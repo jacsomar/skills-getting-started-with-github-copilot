@@ -25,7 +25,26 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          <div class="participants-section">
+            <p class="participants-title"><strong>Participants:</strong></p>
+            <ul class="participants-list"></ul>
+          </div>
         `;
+
+        const participantsList = activityCard.querySelector(".participants-list");
+
+        if (details.participants.length > 0) {
+          details.participants.forEach((participant) => {
+            const participantItem = document.createElement("li");
+            participantItem.textContent = participant;
+            participantsList.appendChild(participantItem);
+          });
+        } else {
+          const emptyParticipantItem = document.createElement("li");
+          emptyParticipantItem.textContent = "No participants yet";
+          emptyParticipantItem.className = "participants-empty";
+          participantsList.appendChild(emptyParticipantItem);
+        }
 
         activitiesList.appendChild(activityCard);
 
